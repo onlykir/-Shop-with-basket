@@ -9,4 +9,4 @@ This application allows the user to calculate the purchase price.
 
 2.The user chooses what he would like to buy until he enters '0'
 
-3.The program calculates the total amount for all goods
+3.The program calculates the total amount for all goods and shows a list of purchased items
