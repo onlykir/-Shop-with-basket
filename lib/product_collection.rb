@@ -1,5 +1,4 @@
 class ProductCollection
-
   PRODUCT_TYPES = {
     film: {dir: "films", class: Film},
     book: {dir: "books", class: Book},
@@ -20,6 +19,12 @@ class ProductCollection
 
   def show
     @products.to_a.map { |product| product.info }
+  end
+
+  def self.show_request(products)
+    "Что хотите купить?\n\n" +
+    products.to_a.map.with_index(1) { |product, index| "#{index}: #{product}" }.join("\n") +
+    "\n0. Выход\n\n"
   end
 
   def self.from_dir(dir_path)

@@ -14,14 +14,24 @@ user_input = nil
 user_purchases = ProductCollection.new # Покупки пользователя
 
 while user_input != "0"
-  Product.show_products(collection)
+  puts ProductCollection.show_request(collection)
 
   user_input = STDIN.gets.strip
 
-  if user_input != "0" && user_input.to_i <= collection.to_a.size && user_input.to_i >= 0
+  if user_input != "0" && user_input.to_i <= collection.to_a.size && user_input.to_i > 0
     product = collection.to_a[user_input.to_i - 1]
-    total_price += product.buy # Увеличиваем стоимость
-    user_purchases.add(product) # Добавляем товар корзину
+
+    if product.any_in_store?
+      puts "***"
+      puts "Вы купили товар #{product.info}"
+      puts "***"
+      total_price += product.buy # Увеличиваем стоимость
+      user_purchases.add(product) # Добавляем товар корзину
+    else
+      puts "***"
+      puts "К сожалению, больше такого товара на складе нет"
+      puts "***"
+    end
   end
 end
 

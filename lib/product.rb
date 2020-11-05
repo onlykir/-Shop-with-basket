@@ -22,30 +22,13 @@ class Product
     raise NotImplementedError
   end
 
-  def self.show_products(products)
-    puts "Что хотите купить?\n\n"
-
-    products.to_a.each.with_index(1) do |product, index|
-      puts "#{index}: #{product}"
-    end
-
-    puts "0. Выход\n\n"
+  def any_in_store?
+    @amount.positive?
   end
 
   def buy
-    if @amount > 0
-      puts "* * *"
-      puts "Вы купили товар #{info}"
-      puts "* * *\n\n"
-
-      @amount -= 1
-      price
-    else
-      puts "* * *"
-      puts "К сожалению, больше такого товара на складе нет"
-      puts "* * *\n\n"
-      0
-    end
+    return 0 unless any_in_store?
+    @amount -= 1
+    price
   end
-
 end
